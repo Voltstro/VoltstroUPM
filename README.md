@@ -6,7 +6,45 @@ This service is a [Unity package manager](https://docs.unity3d.com/Manual/Packag
 
 The service uses [Verdaccio](https://verdaccio.org/) to provide the registry.
 
+To view the online web, simply [go here](https://upm-pkgs.voltstro.dev).
+
 ## Setup
+
+### GUI
+
+To use the custom registry:
+
+1. Project Settings **->** Package Manager
+
+2. Add a new scoped registry with the same details below.
+![Scoped Registry](media/ScopedRegistry.png)
+If you are already using UnityNuGet, and you [don't want to use this registry as a mirror](#using-unitynuget-packages), then exclude `org.nuget` from the scopes.
+
+4. Click 'Apply', you can now use the packages in this registry via the package manager.
+![UPM](media/UPM.png)
+
+### Editing `manifest.json`
+
+You can also add this custom registry via editing your project's `manifest.json`, like so:
+
+```json
+{
+  "dependencies": {
+    ...
+  },
+  "scopedRegistries": [
+    {
+      "name": "Voltstro UPM",
+      "url": "https://upm-pkgs.voltstro.dev",
+      "scopes": [
+        "dev.voltstro",
+        "org.nuget"
+      ]
+    }
+  ]
+}
+
+```
 
 ### Using UnityNuGet packages
 
